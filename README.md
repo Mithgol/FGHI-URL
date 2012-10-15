@@ -4,7 +4,7 @@ This repository contains draft standards of Uniform Resource Locators for the Fi
 
 * The `FidoURL.txt` file is the English version of the draft.
 
-* The `FidoURL.rus.txt` file is the Russian version of the draft (in CP866 encoding, common in Russian Fidonet).
+* The `FidoURL.rus.txt` file is the Russian version of the draft. This version is provided in UTF-8 (for the diffs to look reasonably good on GitHub and other git tools) and thus should be converted to CP866 encoding (common in Russian Fidonet) before posting to Fidonet.
 
 This repository does also contain some JavaScript code as a proof of concept and a reference implementation.
 
