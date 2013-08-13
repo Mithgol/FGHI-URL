@@ -312,3 +312,5 @@ FidonetURL.prototype = {
       };
    }
 }
+
+module.exports = FidonetURL;
