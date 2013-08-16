@@ -26,20 +26,22 @@ function FidonetURL(){  // FidonetURL constructor
    this.scheme = '';
 }
 
-FidonetURL.prototype = {
+FidonetURL.prototype.errors = {
    // Possible exceptions:
-   FGHI_URL_NO_SEPARATOR        : 'No :// separator in URL!',
-   FGHI_URL_EMPTY_OPTIONAL_NAME : 'An optional parameter name is empty!',
-   FGHI_URL_EMPTY_OPTIONAL_PAIR : 'Empty parameter+value pair detected!',
-   FGHI_URL_INVALID_STATION : 'Fidonet station address violates FSP-1004!',
-   FGHI_URL_EMPTY_AREA_NAME : 'Area name is empty!',
-   FGHI_URL_DOUBLE_SLASH    : 'Unexpected double slash!',
+   NO_SEPARATOR        : 'No :// separator in URL!',
+   EMPTY_OPTIONAL_NAME : 'An optional parameter name is empty!',
+   EMPTY_OPTIONAL_PAIR : 'Empty parameter+value pair detected!',
+   INVALID_STATION : 'Fidonet station address violates FSP-1004!',
+   EMPTY_AREA_NAME : 'Area name is empty!',
+   DOUBLE_SLASH    : 'Unexpected double slash!',
 
    // Empty requests are invalid in FGHI URL post-0.3 drafts
-   FGHI_URL_EMPTY_FAQ_REQUEST : 'FAQ request is empty!',
+   EMPTY_FAQ_REQUEST : 'FAQ request is empty!',
 
-   FGHI_URL_UNKNOWN_SCHEME : 'Unknown Fidonet URL scheme!',
+   UNKNOWN_SCHEME : 'Unknown Fidonet URL scheme!',
+};
 
+FidonetURL.prototype = {
    // The station parser function:
    // slices station address (sets stationZone, stationNet,
    //                              stationNode, stationPoint, stationDomain)
@@ -48,7 +50,7 @@ FidonetURL.prototype = {
           /^(([0-9]+):)?([0-9]+)\/([0-9]+)(\.([0-9]+))?(@(.+))?$/
       );
       if (Parsed === null){
-         throw new Error(this.FGHI_URL_INVALID_STATION);
+         throw new Error(this.errors.INVALID_STATION);
       } else {
          this.stationZone = Parsed[2];
          if (this.stationZone === undefined) this.stationZone = '';
@@ -93,7 +95,7 @@ FidonetURL.prototype = {
             this.objectPathPart.push(decodeFGHIURL(PathBuf));
             PathBuf = '';
          } else if (SlashPos === 0){
-            throw new Error(this.FGHI_URL_DOUBLE_SLASH);
+            throw new Error(this.errors.DOUBLE_SLASH);
          } else if (SlashPos === (PathBuf.length - 1)){
             // Trailing slash. IMPORTANT! Must not be ignored.
             this.objectPathPart.push(decodeFGHIURL(PathBuf.slice(0, -1)));
@@ -116,7 +118,7 @@ FidonetURL.prototype = {
       var SchemeSeparatorMatch = pfsString.match(/:(\/{2})?/);
                  // NB: the above regexp is greedy ^^^^^^^^
       if (SchemeSeparatorMatch === null) {
-         throw new Error(this.FGHI_URL_NO_SEPARATOR);  // URL is invalid!
+         throw new Error(this.errors.NO_SEPARATOR);  // URL is invalid!
       }
 
       var SchemeSeparatorPosition = 
@@ -161,7 +163,7 @@ FidonetURL.prototype = {
             if (AmpersandPos === 0) {
                // Mistake: nothing precedes an ampersand,
                // or unexpected double ampersand (&&) is encountered!
-               throw new Error(this.FGHI_URL_EMPTY_OPTIONAL_PAIR);
+               throw new Error(this.errors.EMPTY_OPTIONAL_PAIR);
             } else if (AmpersandPos < 0) {
                // No more ampersands!
                ParamValuePair = optionalBuf;
@@ -177,7 +179,7 @@ FidonetURL.prototype = {
             var ParamValueObject = {};
             if (EqualsPos === 0) {
                // Mistake: empty parameter name!
-               throw new Error(this.FGHI_URL_EMPTY_OPTIONAL_NAME);
+               throw new Error(this.errors.EMPTY_OPTIONAL_NAME);
             } else if (EqualsPos < 0) {
                // The equals sign is absent!
                // The ParamValuePair contains just the name
@@ -238,7 +240,7 @@ FidonetURL.prototype = {
                this.NoObjectPath();
                this.echoName = decodeFGHIURL(this.requiredPart);
             } else if (SlashPos === 0){
-               throw new Error(this.FGHI_URL_EMPTY_AREA_NAME);
+               throw new Error(this.errors.EMPTY_AREA_NAME);
             } else {
                this.echoName =
                   decodeFGHIURL(this.requiredPart.slice(0, SlashPos));
@@ -252,7 +254,7 @@ FidonetURL.prototype = {
             var FreqBuf = '';
 
             if (FirstSlashPos <= 0){
-               throw new Error(this.FGHI_URL_INVALID_STATION);
+               throw new Error(this.errors.INVALID_STATION);
             }
 
             var SecondSlashPos = this.requiredPart.indexOf('/',
@@ -275,7 +277,7 @@ FidonetURL.prototype = {
                   this.request = decodeFGHIURL(FreqBuf);
                } else if (ThirdSlashPos === 0){
                   // Empty requests are invalid in FGHI URL post-0.3 drafts
-                  throw new Error(this.FGHI_URL_EMPTY_FAQ_REQUEST);
+                  throw new Error(this.errors.EMPTY_FAQ_REQUEST);
                } else {
                   this.request =
                      decodeFGHIURL(FreqBuf.slice(0, ThirdSlashPos));
@@ -293,7 +295,7 @@ FidonetURL.prototype = {
             var FreqBuf = '';
 
             if (FirstSlashPos <= 0){
-               throw new Error(this.FGHI_URL_INVALID_STATION);
+               throw new Error(this.errors.INVALID_STATION);
             }
 
             var SecondSlashPos = this.requiredPart.indexOf('/',
@@ -312,7 +314,7 @@ FidonetURL.prototype = {
          break;
 
          default:
-            throw new Error(this.FGHI_URL_UNKNOWN_SCHEME);
+            throw new Error(this.errors.UNKNOWN_SCHEME);
          break;
       }
    }
