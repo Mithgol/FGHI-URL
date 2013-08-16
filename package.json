@@ -1,6 +1,6 @@
 {
 "name": "fghi-url",
-"version": "0.0.1",
+"version": "0.3.0",
 "description": "FGHI URL parser",
 "main": "index.js",
 "repository": {
