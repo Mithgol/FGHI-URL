@@ -1,5 +1,6 @@
-// An auxiliary parser function:
-// converts a %-encoded string to real string
+// Convert any %-encoded FGHI URL string to a real string:
+// 1) replace '+' to a space
+// 2) find %-encoded fragments, run them through decodeURIComponent()
 function decodeFGHIURL(encodedString){
    var spaceDecodedString = encodedString.replace(/\+/g, ' ');
    var SourceArray =
@@ -9,8 +10,7 @@ function decodeFGHIURL(encodedString){
       return spaceDecodedString;
    } else {
       // Converting all URLencoded fragments
-      var ijk;
-      for (ijk = 1; ijk < SourceArray.length; ijk += 3){
+      for (var ijk = 1; ijk < SourceArray.length; ijk += 3){
          SourceArray[ijk] = decodeURIComponent(SourceArray[ijk]);
          SourceArray[ijk+1] = '';
       };
