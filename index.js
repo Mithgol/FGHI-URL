@@ -22,7 +22,7 @@ function decodeFGHIURL(encodedString){
 // takes a string
 function FidonetURL(initialString){
    // a fair number of helper functions is used in object's context (this)!
-   // _END_OF_HELPER_FUNCTIONS_ below is the real constructor code's start
+   // _END_OF_HELPER_FUNCTIONS_ below is the real constructor code's start
 
    var parseStation = function(){
       // takes this.station and makes slices:
