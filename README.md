@@ -16,6 +16,6 @@ The JavaScript code is currently outdated (it does not support even v0.4 featu
 
 # License
 
-Distribution of the drafts is unlimited (see section 1), provided that the text is not altered without notice.
+Distribution of the FGHI URL standards is unlimited (see section 1), provided that the text is not altered without notice.
 
 The JavaScript code is MIT-licensed.
