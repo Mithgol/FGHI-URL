@@ -1,0 +1,14 @@
+{
+"name": "fghi-url",
+"version": "0.0.1",
+"description": "FGHI URL parser",
+"main": "index.js",
+"repository": {
+   "type": "git",
+   "url": "git://github.com/Mithgol/FGHI-URL.git"
+},
+"scripts": {
+   "hint": "jshint index.js",
+   "test": "mocha -R spec"
+}
+}
