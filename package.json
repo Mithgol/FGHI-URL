@@ -8,7 +8,7 @@
    "url": "git://github.com/Mithgol/FGHI-URL.git"
 },
 "scripts": {
-   "pretest": "jshint index.js",
+   "pretest": "jshint index.js test/",
    "test": "mocha -R spec"
 }
 }

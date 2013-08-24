@@ -132,6 +132,12 @@ var parseOptionalPart = function(){
    var optionalBuf = this.optionalPart;
    // if the optional parts ends with ampersand (&), kill it:
    if( optionalBuf.charAt(optionalBuf.length-1) === '&' ){
+      if (
+         optionalBuf.length > 1 &&
+         optionalBuf.charAt(optionalBuf.length-2) === '&'
+      ){
+         throw new Error(this.errors.EMPTY_OPTIONAL_PAIR);
+      }
       optionalBuf = optionalBuf.slice(0, -1);
    }
    while (optionalBuf.length > 0){
@@ -320,7 +326,7 @@ function FidonetURL(initialString){
 FidonetURL.prototype.errors = {
    NO_SEPARATOR        : 'No :// separator in URL!',
    EMPTY_OPTIONAL_NAME : 'An optional parameter name is empty!',
-   EMPTY_OPTIONAL_PAIR : 'Empty parameter+value pair detected!',
+   EMPTY_OPTIONAL_PAIR : 'Empty parameter=value pair detected!',
    INVALID_STATION : 'Fidonet station address violates FSP-1004!',
    EMPTY_AREA_NAME : 'Area name is empty!',
    DOUBLE_SLASH    : 'Unexpected double slash!',
