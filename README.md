@@ -12,7 +12,7 @@ This repository does also contain a JavaScript module (for Node.js) as a pro
 
 Both drafts of the standards are “nightly builds” of 0.5pre version, dated 8 Apr 2010 (and after that date any regular updating of the 0.5pre drafts was abandoned).
 
-The JavaScript code is currently outdated (it does not support even v0.4 features). Its upgrade is planned.
+The JavaScript code is currently outdated (it does not support even v0.4 features). Its upgrade is in progress.
 
 [![(npm package version)](https://badge.fury.io/js/fghi-url.png)](https://npmjs.org/package/fghi-url)
 
