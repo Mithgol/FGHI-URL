@@ -86,4 +86,45 @@ describe('Error processing', function(){
          FGHIURL('faqserv://7:7:5/6/');
       }, RegExp( FGHIURL.INVALID_STATION ));
    });
+   it('does not allow an empty name of an area', function(){
+      assert.throws(function(){
+         FGHIURL('area:///');
+      }, RegExp( FGHIURL.EMPTY_AREA_NAME ));
+      assert.throws(function(){
+         FGHIURL('fecho:///');
+      }, RegExp( FGHIURL.EMPTY_AREA_NAME ));
+      assert.throws(function(){
+         FGHIURL('area:///some/path');
+      }, RegExp( FGHIURL.EMPTY_AREA_NAME ));
+      assert.throws(function(){
+         FGHIURL('fecho:///some/container/');
+      }, RegExp( FGHIURL.EMPTY_AREA_NAME ));
+      assert.doesNotThrow(function(){
+         FGHIURL('area://');
+         FGHIURL('fecho://');
+         FGHIURL('area://?filter=subscribed');
+      });
+   });
+   it("rejects a double slash in an object's path", function(){
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public//somefile');
+      }, RegExp( FGHIURL.DOUBLE_SLASH ));
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public/somedir//');
+      }, RegExp( FGHIURL.DOUBLE_SLASH ));
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public/somedir//more+path');
+      }, RegExp( FGHIURL.DOUBLE_SLASH ));
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public/somedir//more+path/');
+      }, RegExp( FGHIURL.DOUBLE_SLASH ));
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public/somedir//more+path//');
+      }, RegExp( FGHIURL.DOUBLE_SLASH ));
+      assert.doesNotThrow(function(){
+         FGHIURL('area://FTSC_Public/somefile');
+         FGHIURL('area://FTSC_Public/somedir/');
+         FGHIURL('area://FTSC_Public/somedir/more+path');
+      });
+   });
 });
