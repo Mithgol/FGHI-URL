@@ -181,12 +181,16 @@ var parseOptionalPart = function(){
    } // optionalBuf is processed
 };
 
+var decodeEchoNames = function(stringEchoNames){
+   return [decodeFGHIURL(stringEchoNames)];
+};
+
 var netmailRequiredPart = function(){
    // process this.requiredPart for 'netmail:' scheme
    // it contains this.station (with subsections)
    this.request = '';
    noObjectPath.call(this);
-   this.echoName = '';
+   this.echoNames = [];
    this.station = this.requiredPart;
    parseStation.call(this);
 };
@@ -197,12 +201,12 @@ var areafixOrEchomailRequiredPart = function(){
    this.request = '';
    noObjectPath.call(this);
    noStation.call(this);
-   this.echoName = decodeFGHIURL(this.requiredPart);
+   this.echoNames = decodeEchoNames(this.requiredPart);
 };
 
 var areaOrFechoRequiredPart = function(){
    // process this.requiredPart for 'area://' or 'fecho://' scheme
-   // it contains this.echoName and this.objectPath
+   // it contains this.echoNames and this.objectPath
    this.request = '';
    noStation.call(this);
 
@@ -210,12 +214,12 @@ var areaOrFechoRequiredPart = function(){
    if (slashPos < 0){
       // No object-path!
       noObjectPath.call(this);
-      this.echoName = decodeFGHIURL(this.requiredPart);
+      this.echoNames = decodeEchoNames(this.requiredPart);
    } else if (slashPos === 0){
       throw new Error(this.errors.EMPTY_AREA_NAME);
    } else {
-      this.echoName =
-         decodeFGHIURL(this.requiredPart.slice(0, slashPos));
+      this.echoNames =
+         decodeEchoNames(this.requiredPart.slice(0, slashPos));
       this.objectPath = this.requiredPart.slice(slashPos + 1);
       parseObjectPath.call(this);
    }
@@ -285,7 +289,7 @@ var parseRequiredPart = function(){
    // Our goal is to fill one (or more) of the following:
    // *) station (stationZone, stationNet, stationNode, stationPoint,
    //             stationDomain)
-   // *) echoName
+   // *) echoNames
    // *) objectPath (and the objectPathParts[] array)
    // *) request (for faqserv://)
    switch(this.scheme){ // in order of appearance in the FGHI URL standard:
