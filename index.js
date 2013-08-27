@@ -182,7 +182,11 @@ var parseOptionalPart = function(){
 };
 
 var decodeEchoNames = function(stringEchoNames){
-   return [decodeFGHIURL(stringEchoNames)];
+   return stringEchoNames.split(/\+|%20/).map(function(atEchotag){
+      return atEchotag.split('@').map(function(echonamePart){
+         return decodeFGHIURL(echonamePart);
+      });
+   });
 };
 
 var netmailRequiredPart = function(){
