@@ -12,7 +12,7 @@ This repository does also contain a JavaScript module (for Node.js) as a pro
 
 Both drafts of the standards are “nightly builds” of 0.5pre version, dated 8 Apr 2010 (and after that date any regular updating of the 0.5pre drafts was abandoned).
 
-The JavaScript module is compatible with the drafts (though not completely covered by tests to prove that).
+The JavaScript module is compatible with the drafts (though not completely covered by tests to prove that). The module also contains some additional features from the FGHI TODO list (circa 2010, and not included in this repository), these are not yet documented formally in the drafts.
 
 # Installing the module
 
