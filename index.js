@@ -183,7 +183,13 @@ var parseOptionalPart = function(){
 
 var decodeEchoNames = function(stringEchoNames){
    return stringEchoNames.split(/\+|%20/).map(function(atEchotag){
+      if( atEchotag.length < 1 ){
+         throw new Error(this.errors.EMPTY_FQAN);
+      }
       return atEchotag.split('@').map(function(echonamePart){
+         if( echonamePart.length < 1 ){
+            throw new Error(this.errors.EMPTY_FQAN_PART);
+         }
          return decodeFGHIURL(echonamePart);
       });
    });
@@ -339,9 +345,9 @@ FidonetURL.prototype.errors = {
    EMPTY_AREA_NAME : 'Area name is empty!',
    DOUBLE_SLASH    : 'Unexpected double slash!',
    UNKNOWN_SCHEME  : 'Unknown Fidonet URL scheme!',
-
-   // Empty requests are invalid in FGHI URL post-0.3 drafts
-   EMPTY_FAQ_REQUEST : 'FAQ request is empty!'
+   EMPTY_FAQ_REQUEST : 'FAQ request is empty!',
+   EMPTY_FQAN : 'A fully qualified area name is empty!',
+   EMPTY_FQAN_PART : 'A part of a fully qualified area name is empty!'
 };
 
 module.exports = FidonetURL;
