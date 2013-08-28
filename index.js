@@ -182,6 +182,9 @@ var parseOptionalPart = function(){
 };
 
 var decodeEchoNames = function(stringEchoNames){
+   if( stringEchoNames.length < 1 ){
+      return [];
+   }
    return stringEchoNames.split(/\+|%20/).map(function(atEchotag){
       if( atEchotag.length < 1 ){
          throw new Error(this.errors.EMPTY_FQAN);
@@ -211,7 +214,7 @@ var areafixOrEchomailRequiredPart = function(){
    this.request = '';
    noObjectPath.call(this);
    noStation.call(this);
-   this.echoNames = decodeEchoNames(this.requiredPart);
+   this.echoNames = decodeEchoNames.call(this, this.requiredPart);
 };
 
 var areaOrFechoRequiredPart = function(){
@@ -224,12 +227,12 @@ var areaOrFechoRequiredPart = function(){
    if (slashPos < 0){
       // No object-path!
       noObjectPath.call(this);
-      this.echoNames = decodeEchoNames(this.requiredPart);
+      this.echoNames = decodeEchoNames.call(this, this.requiredPart);
    } else if (slashPos === 0){
       throw new Error(this.errors.EMPTY_AREA_NAME);
    } else {
       this.echoNames =
-         decodeEchoNames(this.requiredPart.slice(0, slashPos));
+         decodeEchoNames.call(this, this.requiredPart.slice(0, slashPos));
       this.objectPath = this.requiredPart.slice(slashPos + 1);
       parseObjectPath.call(this);
    }

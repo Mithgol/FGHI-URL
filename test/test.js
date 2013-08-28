@@ -127,4 +127,34 @@ describe('Error processing', function(){
          FGHIURL('area://FTSC_Public/somedir/more+path');
       });
    });
+   it('rejects empty elements in the list of areas', function(){
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public+/somefile');
+      }, RegExp( FGHIURL.EMPTY_FQAN ));
+      assert.throws(function(){
+         FGHIURL('area://%20FTSC_Public');
+      }, RegExp( FGHIURL.EMPTY_FQAN ));
+      assert.throws(function(){
+         FGHIURL('area://Ru.FTN.Develop+%20FTSC_Public');
+      }, RegExp( FGHIURL.EMPTY_FQAN ));
+      assert.doesNotThrow(function(){
+         FGHIURL('area://Ru.FTN.Develop+FTSC_Public/somefile');
+         FGHIURL('area://Ru.FTN.Develop%20FTSC_Public');
+      });
+   });
+   it('rejects empty suffixes in a name of an area', function(){
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public@/somefile');
+      }, RegExp( FGHIURL.EMPTY_FQAN ));
+      assert.throws(function(){
+         FGHIURL('area://FTSC_Public@@fidonet');
+      }, RegExp( FGHIURL.EMPTY_FQAN ));
+      assert.throws(function(){
+         FGHIURL('area://Ru.FTN.Develop@fidonet@');
+      }, RegExp( FGHIURL.EMPTY_FQAN ));
+      assert.doesNotThrow(function(){
+         FGHIURL('area://Ru.FTN.Develop+FTSC_Public@fidonet');
+         FGHIURL('area://Ru.FTN.Develop@fidonet%40%40root%20FTSC_Public');
+      });
+   });
 });
