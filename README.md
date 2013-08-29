@@ -52,9 +52,11 @@ The returned object has the following properties:
 
 * `objectPath` — The path to a designated object (if any).
 
-* `objectPathParts` — Array of the parts of that path (that were slash-separated in `objectPath`). If `objectPath` ends with a slash, the last element of the array is `/`.
+* `objectPathParts` — Array of the parts of that path (that were slash-separated in `objectPath`). If `objectPath` ends with a slash, the last element of the array is `'/'`.
 
 * `echoNames` — An array of the fully-qualified names of Fidonet echomail areas. Each element is also an array and contains parts of such name (that were `@`-separated in the URL).
+
+If an error is encountered, the parser throws `new Error('…')` with one of the ten predefined strings (error descriptions). You may see these strings in the bottom of `index.js`.
 
 # Testing the module
 
