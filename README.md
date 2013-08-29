@@ -24,6 +24,38 @@ The JavaScript module is compatible with the drafts (though not completely cove
 
 You may visit https://github.com/Mithgol/FGHI-URL occasionally to read the latest `README` and the drafts of the FGHI URL standard. The package's version is planned to grow after code changes only. (However, `npm publish --force` may happen eventually.)
 
+# Using the module
+
+When you `require()` the installed module, an URL parser function is returned. You may call that function (with some FGHI URL as its only parameter), and it returns an object with properties that correspond to parts of the given URL.
+
+Example:
+
+![(screenshot)](https://f.cloud.github.com/assets/1088720/1048572/e0243df8-108e-11e3-8316-84ee29732f02.gif)
+
+The returned object has the following properties:
+
+* `scheme` — The name of the given FGHI URL's scheme (one of the documented: `'netmail'`, `'areafix'`, `'echomail'`, `'area'`, `'faqserv'`, `'fecho'`, `'freq'`).
+
+* `schemeSpecificPart` — The rest of the URL (everything after the separator that followed the scheme). The meaning of its contents is specific to the given scheme.
+
+* `requiredPart` — The required part of the URL (everything before the first `?` character in `schemeSpecificPart`; or the entire `schemeSpecificPart`, if there's no `?`).
+
+* `optionalPart` — The optional part of the URL (everything after the first `?` character; an empty string, if there's no `?`).
+
+* `optionalParams` — An array of optional parameters encountered in `optionalPart`. Each parameter is an object that has two parameters (`name` and `value`).
+
+* `request` — The request (for `faqserv://…` URLs only; empty for URLs of other types).
+
+* `station` — The address of the target station in Fidonet.
+
+* `stationZone`, `stationNet`, `stationNode`, `stationPoint`, `stationDomain` — Parts of the 5D `station` address.
+
+* `objectPath` — The path to a designated object (if any).
+
+* `objectPathParts` — Array of the parts of that path (that were slash-separated in `objectPath`). If `objectPath` ends with a slash, the last element of the array is `/`.
+
+* `echoNames` — An array of the fully-qualified names of Fidonet echomail areas. Each element is also an array and contains parts of such name (that were `@`-separated in the URL).
+
 # Testing the module
 
 [![(build testing status)](https://travis-ci.org/Mithgol/FGHI-URL.png?branch=master)](https://travis-ci.org/Mithgol/FGHI-URL)

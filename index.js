@@ -241,6 +241,7 @@ var areaOrFechoRequiredPart = function(){
 var faqservRequiredPart = function(){
    // process this.requiredPart for 'faqserv://' scheme
    // it contains this.station and this.objectPath
+   this.echoNames = [];
    var FreqBuf = '';
 
    var firstSlashPos = this.requiredPart.indexOf('/');
@@ -277,6 +278,7 @@ var freqRequiredPart = function(){
    // process this.requiredPart for 'freq://' scheme
    // it contains this.station and this.objectPath
    this.request = '';
+   this.echoNames = [];
 
    var firstSlashPos = this.requiredPart.indexOf('/');
    if( firstSlashPos <= 0 ) throw new Error(this.errors.INVALID_STATION);
