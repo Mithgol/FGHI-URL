@@ -361,4 +361,38 @@ describe('URL processing', function(){
          }]);
       });
    });
+
+   describe("processes 'areafix:' examples (section 6.2)", function(){
+      it('section 6.2 initial part', function(){
+         var url = FGHIURL('areafix:SU.FidoTech');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [['SU.FidoTech']]);
+
+         url = FGHIURL('areafix:Ru.Fidonet.Today');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [['Ru.Fidonet.Today']]);
+
+         url = FGHIURL('areafix:Ru.FTN.Develop+Ru.FTN.WinSoft');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [
+            ['Ru.FTN.Develop'],
+            ['Ru.FTN.WinSoft']
+         ]);
+
+         url = FGHIURL('areafix:Ru.Computer.Humor%20Ru.Hutor.Filtered');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [
+            ['Ru.Computer.Humor'],
+            ['Ru.Hutor.Filtered']
+         ]);
+
+         url = FGHIURL('areafix:Titanic.Best+Titanic.Forward%20Titanic.PVT');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [
+            ['Titanic.Best'],
+            ['Titanic.Forward'],
+            ['Titanic.PVT']
+         ]);
+      });
+   });
 });
