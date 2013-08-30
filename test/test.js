@@ -158,3 +158,207 @@ describe('Error processing', function(){
       });
    });
 });
+
+describe('URL processing', function(){
+   describe("processes 'netmail:' examples (section 6.1)", function(){
+      it('section 6.1 initial part', function(){
+         var url = FGHIURL('netmail:2:5030/1520.9');
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5030');
+         assert.equal(url.stationNode, '1520');
+         assert.equal(url.stationPoint, '9');
+         assert.equal(url.stationDomain, '');
+
+         url = FGHIURL('netmail:2:5063/88');
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5063');
+         assert.equal(url.stationNode, '88');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+
+         url = FGHIURL('netmail:182:5043/1@forestnet');
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '182');
+         assert.equal(url.stationNet, '5043');
+         assert.equal(url.stationNode, '1');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, 'forestnet');
+      });
+
+      it('section 6.1.1', function(){
+         var url = FGHIURL('netmail:2:5063/88?to=Mithgol+the+Webmaster');
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5063');
+         assert.equal(url.stationNode, '88');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'to',
+            value: 'Mithgol the Webmaster'
+         }]);
+
+         url = FGHIURL('netmail:2:5030/1520.9?to=Trooper');
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5030');
+         assert.equal(url.stationNode, '1520');
+         assert.equal(url.stationPoint, '9');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'to',
+            value: 'Trooper'
+         }]);
+
+         url = FGHIURL('netmail:2:50/13?to=Alex%20Kocharin');
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '50');
+         assert.equal(url.stationNode, '13');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'to',
+            value: 'Alex Kocharin'
+         }]);
+      });
+
+      it('section 6.1.2', function(){
+         var url = FGHIURL(
+            'netmail:2:5063/88?subject=Is+the+hypertext+Fidonet+ready%3F'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5063');
+         assert.equal(url.stationNode, '88');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'subject',
+            value: 'Is the hypertext Fidonet ready?'
+         }]);
+
+         url = FGHIURL(
+            'netmail:2:5030/830.17?subject=Yet+another+GoldEd%2b+feature'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5030');
+         assert.equal(url.stationNode, '830');
+         assert.equal(url.stationPoint, '17');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'subject',
+            value: 'Yet another GoldEd+ feature'
+         }]);
+
+         url = FGHIURL(
+            'netmail:2:5030/84?to=R50EC&subject=%D0%AD%D1%85%D0%B8'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5030');
+         assert.equal(url.stationNode, '84');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'to',
+            value: 'R50EC'
+         }, {
+            name: 'subject',
+            value: 'Эхи'
+         }]);
+      });
+
+      it('section 6.1.3', function(){
+         var url = FGHIURL(
+            'netmail:2:5030/84?to=R50EC&from=Moderator&subject=New+echo+rules'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5030');
+         assert.equal(url.stationNode, '84');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'to',
+            value: 'R50EC'
+         }, {
+            name: 'from',
+            value: 'Moderator'
+         }, {
+            name: 'subject',
+            value: 'New echo rules'
+         }]);
+
+         url = FGHIURL(
+            'netmail:2:5024/1024?from=Moderator&subject=%5B%21%5D+read+only'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5024');
+         assert.equal(url.stationNode, '1024');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'from',
+            value: 'Moderator'
+         }, {
+            name: 'subject',
+            value: '[!] read only'
+         }]);
+      });
+
+      it('section 6.1.4', function(){
+         var url = FGHIURL(
+            'netmail:2:5063/88?subject=About+FGHI&body=Fidonet+2.0+draft'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5063');
+         assert.equal(url.stationNode, '88');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'subject',
+            value: 'About FGHI'
+         }, {
+            name: 'body',
+            value: 'Fidonet 2.0 draft'
+         }]);
+
+         url = FGHIURL(
+            'netmail:2:50/0?subject=Complaint&body=A+sysop+is+annoying'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '50');
+         assert.equal(url.stationNode, '0');
+         assert.equal(url.stationPoint, '');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'subject',
+            value: 'Complaint'
+         }, {
+            name: 'body',
+            value: 'A sysop is annoying'
+         }]);
+
+         url = FGHIURL(
+            'netmail:2:5030/1520.9?body=HellEd+needs+enormously+large+DLLs'
+         );
+         assert.equal(url.scheme, 'netmail');
+         assert.equal(url.stationZone, '2');
+         assert.equal(url.stationNet, '5030');
+         assert.equal(url.stationNode, '1520');
+         assert.equal(url.stationPoint, '9');
+         assert.equal(url.stationDomain, '');
+         assert.deepEqual(url.optionalParams, [{
+            name: 'body',
+            value: 'HellEd needs enormously large DLLs'
+         }]);
+      });
+   });
+});
