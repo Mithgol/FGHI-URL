@@ -9,6 +9,6 @@
 },
 "scripts": {
    "pretest": "jshint index.js test/",
-   "test": "mocha -R spec"
+   "test": "mocha --reporter spec"
 }
 }
