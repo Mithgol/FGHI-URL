@@ -64,9 +64,9 @@ If an error is encountered, the parser throws `new Error('…')` with one of t
 
 It is necessary to install [Mocha](http://visionmedia.github.io/mocha/) and [JSHint](http://jshint.com/) for testing.
 
-* You may install Mocha globally (`npm install mocha -g`) or locally (`npm install mocha` in the directory of the FGHI URL module).
+* You may install Mocha globally (`npm install mocha -g`) or locally (`npm install mocha` in the directory of the FGHI URL module or any of its parent directories).
 
-* You may install JSHint globally (`npm install jshint -g`) or locally (`npm install jshint` in the directory of the FGHI URL module).
+* You may install JSHint globally (`npm install jshint -g`) or locally (`npm install jshint` in the directory of the FGHI URL module or any of its parent directories).
 
 After that you may run `npm test` (in the directory of the FGHI URL module) for testing.
 
