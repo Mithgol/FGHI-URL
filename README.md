@@ -42,7 +42,7 @@ The returned object has the following properties:
 
 * `optionalPart` — The optional part of the URL (everything after the first `?` character; an empty string, if there's no `?`).
 
-* `optionalParams` — An array of optional parameters encountered in `optionalPart`. Each parameter is an object that has two parameters (`name` and `value`).
+* `optionalParams` — An array of optional parameters encountered in `optionalPart`. Each parameter is an object that has two properties (`name` and `value`).
 
 * `request` — The request (for `faqserv://…` URLs only; empty for URLs of other types).
 
