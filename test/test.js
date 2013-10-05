@@ -394,5 +394,22 @@ describe('URL processing', function(){
             ['Titanic.PVT']
          ]);
       });
+      it('section 6.2.1', function(){
+         var url = FGHIURL('areafix:Ru.Embedded?uplink=2:5029/32');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [['Ru.Embedded']]);
+         assert.deepEqual(url.optionalParams, [{
+            name: 'uplink',
+            value: '2:5029/32'
+         }]);
+
+         url = FGHIURL('areafix:Titanic.PVT?uplink=2:5020/830');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [['Titanic.PVT']]);
+         assert.deepEqual(url.optionalParams, [{
+            name: 'uplink',
+            value: '2:5020/830'
+         }]);
+      });
    });
 });
