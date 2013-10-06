@@ -411,5 +411,26 @@ describe('URL processing', function(){
             value: '2:5020/830'
          }]);
       });
+      it('section 6.2.2', function(){
+         var url = FGHIURL('areafix:Ru.PHP?leave');
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [['Ru.PHP']]);
+         assert.deepEqual(url.optionalParams, [{
+            name: 'leave',
+            value: ''
+         }]);
+
+         url = FGHIURL(
+            'areafix:Ru.List.Citycat.Culture.Music.Announce.FantasyNews?leave'
+         );
+         assert.equal(url.scheme, 'areafix');
+         assert.deepEqual(url.echoNames, [[
+            'Ru.List.Citycat.Culture.Music.Announce.FantasyNews'
+         ]]);
+         assert.deepEqual(url.optionalParams, [{
+            name: 'leave',
+            value: ''
+         }]);
+      });
    });
 });
