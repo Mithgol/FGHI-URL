@@ -3383,7 +3383,7 @@ FGHI                                FIDONET GLOBAL HYPERTEXT INTERFACE
 
           Синтаксис кладжа ORIGEO таков же, как у GEO:
 
-          <SOH>GEO: <Широта>;<Долгота>
+          <SOH>ORIGEO: <Широта>;<Долгота>
 
           Здесь <SOH> является одиночным символом SOH (Ctrl+A,
           ASCII 1); значения широты и долготы ДОЛЖНЫ использовать
