@@ -610,7 +610,7 @@ Contents:
         The character "%" is unsafe because it is used for encodings
         of other characters. The octet 25 hexadecimal MUST always be
         encoded.
-        
+
         The character sequence of triple minus ("-" repeated thrice)
         has a special meaning in Fidonet and can accidentally start
         a tearline in some cases (e.g. when a line is wrapped).
