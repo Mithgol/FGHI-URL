@@ -6,7 +6,7 @@ This repository contains draft standards of Uniform Resource Locators for the Fi
 
 * The `FidoURL.rus.txt` file is the Russian version of the draft. This version is provided in UTF-8 (for the diffs to look reasonably good on GitHub and other git tools) and thus should be converted to CP866 encoding (common in Russian Fidonet) before posting to Fidonet.
 
-This repository does also contain a JavaScript module (for Node.js) as a proof of concept and a reference implementation.
+This repository does also contain a JavaScript module (for Node.js) as a proof of concept and a reference implementation. It requires Node.js version 0.8 (or newer) and npm. An attempt of an npm-driven installation in Node 0.6 (or older) [would fail in 2014](https://github.com/npm/npm/issues/4379) anyway.
 
 # Versions
 
