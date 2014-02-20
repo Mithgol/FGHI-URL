@@ -434,3 +434,18 @@ describe('URL processing', function(){
       });
    });
 });
+
+describe('Detection of filters', function(){
+   it('detects when a filter is given', function(){
+      assert( FGHIURL('area://Ru.FTN.Develop/?time=2014').hasFilters() );
+      assert( FGHIURL('area://Ru.FTN.Develop?ttop').hasFilters() );
+      assert( FGHIURL('area://Ru.FTN.Develop?ttop&view=mapm').hasFilters() );
+   });
+   it('detects when there are no filters', function(){
+      assert(! FGHIURL('areafix:Ru.FTN.Develop').hasFilters() );
+      assert(! FGHIURL('area://Ru.FTN.Develop').hasFilters() );
+      assert(! FGHIURL('area://Ru.FTN.Develop/').hasFilters() );
+      assert(! FGHIURL('area://Ru.FTN.Develop/ttop').hasFilters() );
+      assert(! FGHIURL('area://Ru.FTN.Develop?view=mapm').hasFilters() );
+   });
+});

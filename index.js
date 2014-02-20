@@ -342,6 +342,31 @@ function FidonetURL(initialString){
    parseRequiredPart.call(this);
 }
 
+FidonetURL.prototype.hasFilters = function(){
+   if( this.scheme !== 'area' ) return false;
+   var arrFilters = [
+      'msgid',
+      'time',
+      'from',
+      'twit',
+      'find',
+      'subj',
+      'findsb',
+      'to',
+      'sender',
+      'geomark',
+      'geofrom',
+      'tag',
+      'ttop'
+   ];
+   for( var i = 0; i < this.optionalParams.length; i++ ){
+      if( arrFilters.indexOf(this.optionalParams[i].name) >= 0 ){
+         return true;
+      }
+   }
+   return false;
+};
+
 FidonetURL.prototype.errors = {
    NO_SEPARATOR        : 'No :// separator in URL!',
    EMPTY_OPTIONAL_NAME : 'An optional parameter name is empty!',

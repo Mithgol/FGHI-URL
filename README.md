@@ -1,4 +1,4 @@
-# FGHI URL
+## FGHI URL
 
 This repository contains draft standards of Uniform Resource Locators for the Fidonet Global Hypertext Interface project.
 
@@ -8,13 +8,13 @@ This repository contains draft standards of Uniform Resource Locators for the Fi
 
 This repository does also contain a JavaScript module (for Node.js) as a proof of concept and a reference implementation. It requires Node.js version 0.8 (or newer) and npm. An attempt of an npm-driven installation in Node 0.6 (or older) [would fail in 2014](https://github.com/npm/npm/issues/4379) anyway.
 
-# Versions
+## Versions
 
 Both drafts of the standards are “nightly builds” of 0.5pre version, dated 8 Apr 2010 (and after that date any regular updating of the 0.5pre drafts was abandoned).
 
 The JavaScript module is compatible with the drafts (though not completely covered by tests to prove that). The module also contains some additional features from the FGHI TODO list (circa 2010, and not included in this repository), these are not yet documented formally in the drafts.
 
-# Installing the module
+## Installing the module
 
 [![(npm package version)](https://badge.fury.io/js/fghi-url.png)](https://npmjs.org/package/fghi-url)
 
@@ -24,13 +24,19 @@ The JavaScript module is compatible with the drafts (though not completely cove
 
 You may visit https://github.com/Mithgol/FGHI-URL occasionally to read the latest `README` and the drafts of the FGHI URL standard. The package's version is planned to grow after code changes only. (However, `npm publish --force` may happen eventually.)
 
-# Using the module
+## Using the module
 
-When you `require()` the installed module, an URL parser function is returned. You may call that function (with some FGHI URL as its only parameter), and it returns an object with properties that correspond to parts of the given URL.
+When you `require()` the installed module, an URL parser function is returned.
+
+You may call that function (with some FGHI URL as its only parameter), and it returns an object with properties that correspond to parts of the given URL.
+
+(An URL parser function is actually that object's constructor, but using the word `new` is optional.)
 
 Example:
 
 ![(screenshot)](https://f.cloud.github.com/assets/1088720/1048572/e0243df8-108e-11e3-8316-84ee29732f02.gif)
+
+## Properties
 
 The returned object has the following properties:
 
@@ -58,7 +64,15 @@ The returned object has the following properties:
 
 If an error is encountered, the parser throws `new Error('…')` with one of the ten predefined strings (error descriptions). You may see these strings in the bottom of `index.js`.
 
-# Testing the module
+The returned object also has the following method:
+
+### hasFilters()
+
+Returns `true` if the object's `scheme` is `"area"` and its `optionalPart` contains at least one filter.
+
+Returns `false` otherwise. For `area://…` URLs it means that the designated object is the whole area(s) unless `objectPath` is given.
+
+## Testing the module
 
 [![(build testing status)](https://travis-ci.org/Mithgol/FGHI-URL.png?branch=master)](https://travis-ci.org/Mithgol/FGHI-URL)
 
@@ -70,7 +84,7 @@ It is necessary to install [Mocha](http://visionmedia.github.io/mocha/) and [JSH
 
 After that you may run `npm test` (in the directory of the FGHI URL module) for testing.
 
-# License
+## License
 
 Distribution of the FGHI URL standards is unlimited (see section 1), provided that the text is not altered without notice.
 
