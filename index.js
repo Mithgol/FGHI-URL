@@ -368,8 +368,11 @@ FidonetURL.prototype.hasFilters = function(){
 };
 
 FidonetURL.prototype.getView = function(supportedViews){
-   if( !Array.isArray(supportedViews) ) return [];
-   if( supportedViews.length < 1 ) return [];
+   if( typeof supportedViews === 'string' && supportedViews.length > 0 ){
+      supportedViews = supportedViews.split(/\s+/);
+   }
+   if( !Array.isArray(supportedViews) ) return '';
+   if( supportedViews.length < 1 ) return '';
 
    var viewLists = this.optionalParams.filter(function(optionalParam){
       return optionalParam.name === 'view' && optionalParam.value.length > 0;
@@ -379,6 +382,18 @@ FidonetURL.prototype.getView = function(supportedViews){
       });
    }).filter(function(viewList){
       return viewList.length > 0;
+   }).map(function(viewList){
+      return viewList[0];
+   });
+
+   if( viewLists.length === 0 ) return '';
+
+   return viewLists.reduce(function(prevView, currView){
+      if(supportedViews.indexOf(prevView) < supportedViews.indexOf(currView)){
+         return prevView;
+      } else {
+         return currView;
+      }
    });
 };
 

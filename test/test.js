@@ -449,3 +449,24 @@ describe('Detection of filters', function(){
       assert(! FGHIURL('area://Ru.FTN.Develop?view=mapm').hasFilters() );
    });
 });
+
+describe('Recommended views', function(){
+   it("an URL's preferred view is recommended, if supported by the browser",
+   function(){
+      assert.equal(
+         FGHIURL(
+            'area://Example?view=list+tree+sing'
+         ).getView('mapm sing cale tree'),
+         'tree'
+      );
+   });
+   it("browser may choose one of equally preferred URL's recommendations",
+   function(){
+      assert.equal(
+         FGHIURL(
+            'area://Example?view=list&view=sing&view=reel'
+         ).getView(['mapm', 'sing', 'cale', 'tree']),
+         'sing'
+      );
+   });
+});

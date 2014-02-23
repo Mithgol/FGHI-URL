@@ -64,13 +64,27 @@ The returned object has the following properties:
 
 If an error is encountered, the parser throws `new Error('…')` with one of the ten predefined strings (error descriptions). You may see these strings in the bottom of `index.js`.
 
-The returned object also has the following method:
+## Methods
+
+The returned object also has following methods:
 
 ### hasFilters()
 
 Returns `true` if the object's `scheme` is `"area"` and its `optionalPart` contains at least one filter.
 
 Returns `false` otherwise. For `area://…` URLs it means that the designated object is the whole area(s) unless `objectPath` is given.
+
+### getView(supportedViews)
+
+Accepts `supportedViews` (the list of views supported by a browser) in a form of a string (such as `'list totr'`, where view tokens are space-separated) or an array of string (such as `['list', 'totr']`). If several views are supported, their tokens must be given in the order of preference.
+
+Returns the token of an URL-recommended view (if the given URL recommends a browser-supported view) or an empty string.
+
+If several supported views are recommended, the most preferred view's token is returned. For example,
+
+* `require('fghi-url')('area://Example?view=list+tree+sing').getView('sing cale tree')` returns `'tree'` (that is the most preferred of the URL's recommendations supported by the browser),
+
+* `require('fghi-url')('area://Example?view=tree&view=sing').getView('sing cale tree')` returns `'sing'` (among the equally preferred recommendations of the URL that was the most preferred by the browser).
 
 ## Testing the module
 
