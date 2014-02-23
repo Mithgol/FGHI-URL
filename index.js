@@ -367,6 +367,21 @@ FidonetURL.prototype.hasFilters = function(){
    return false;
 };
 
+FidonetURL.prototype.getView = function(supportedViews){
+   if( !Array.isArray(supportedViews) ) return [];
+   if( supportedViews.length < 1 ) return [];
+
+   var viewLists = this.optionalParams.filter(function(optionalParam){
+      return optionalParam.name === 'view' && optionalParam.value.length > 0;
+   }).map(function(optionalParam){
+      return optionalParam.value.split(/\s+/).filter(function(value){
+         return supportedViews.indexOf(value) > -1;
+      });
+   }).filter(function(viewList){
+      return viewList.length > 0;
+   });
+};
+
 FidonetURL.prototype.errors = {
    NO_SEPARATOR        : 'No :// separator in URL!',
    EMPTY_OPTIONAL_NAME : 'An optional parameter name is empty!',
