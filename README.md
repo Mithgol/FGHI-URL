@@ -22,7 +22,7 @@ The JavaScript module is compatible with the drafts (though not completely cove
 
 * Latest githubbed version: `npm install https://github.com/Mithgol/FGHI-URL/tarball/master`
 
-You may visit https://github.com/Mithgol/FGHI-URL occasionally to read the latest `README` and the drafts of the FGHI URL standard. The package's version is planned to grow after code changes only. (However, `npm publish --force` may happen eventually.)
+You may visit https://github.com/Mithgol/FGHI-URL occasionally to read the latest `README` and the drafts of the FGHI URL standard. The package's version is planned to grow after code changes only. (And `npm publish --force` is [forbidden](http://blog.npmjs.org/post/77758351673/no-more-npm-publish-f) nowadays.)
 
 ## Using the module
 
