@@ -5,7 +5,7 @@ FGHI                                FIDONET GLOBAL HYPERTEXT INTERFACE
 Номер редакции:     0.5pre
 Заглавие:           FGHI URL, средства Единой Формы Адресации Ресурсов
                     для фидонетовских объектов и служб
-Автор:              Mithgol the Webmaster (Sergey Sokoloff, 2:5063/88)
+Автор:              Mithgol the Webmaster   (Sergey Sokoloff, 2:50/88)
 Спасибо за помощь:  Shannar                  (Boris Kassal, 2:463/587)
                     Trooper            (Alexey Bezugly, 2:5030/1520.9)
                     NoSFeRaTU          (Konstantin Kuzov, 2:5019/40.1)

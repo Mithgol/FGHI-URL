@@ -5,7 +5,7 @@ Status:             draft
 Revision:           0.5pre
 Title:              FGHI URL, the set of Uniform Resource Locators
                     for Fidonet objects and services
-Author:             Mithgol the Webmaster (Sergey Sokoloff, 2:5063/88)
+Author:             Mithgol the Webmaster   (Sergey Sokoloff, 2:50/88)
 Special thanks to:  Shannar                  (Boris Kassal, 2:463/587)
                     Trooper            (Alexey Bezugly, 2:5030/1520.9)
                     NoSFeRaTU          (Konstantin Kuzov, 2:5019/40.1)
