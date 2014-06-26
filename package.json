@@ -1,8 +1,10 @@
 {
 "name": "fghi-url",
-"version": "0.5.0-pre.4",
-"description": "FGHI URL parser",
 "main": "index.js",
+"version": "0.5.0-pre.5",
+"description": "FGHI URL parser",
+"author": { "name": "Mithgol the Webmaster" },
+"license": "MIT",
 "repository": {
    "type": "git",
    "url": "git://github.com/Mithgol/FGHI-URL.git"
