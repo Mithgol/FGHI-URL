@@ -1,7 +1,7 @@
 {
 "name": "fghi-url",
 "main": "index.js",
-"version": "0.5.0-pre.5",
+"version": "0.5.0-pre.6",
 "description": "FGHI URL parser",
 "author": { "name": "Mithgol the Webmaster" },
 "license": "MIT",

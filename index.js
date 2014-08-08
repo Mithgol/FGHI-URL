@@ -4,15 +4,14 @@ var decodeFGHIURL = function(encodedString){
    // 2) find %-encoded fragments, run them through decodeURIComponent()
    var spaceDecodedString = encodedString.replace(/\+/g, ' ');
    var SourceArray =
-      spaceDecodedString.split(/((%[0-9ABCDEFabcdef][0-9ABCDEFabcdef])+)/);
+      spaceDecodedString.split(/((?:%[0-9ABCDEFabcdef][0-9ABCDEFabcdef])+)/);
    if (SourceArray.length === 1) {
       // No encoded content detected :-)
       return spaceDecodedString;
    } else {
       // Converting all URLencoded fragments
-      for (var ijk = 1; ijk < SourceArray.length; ijk += 3){
+      for (var ijk = 1; ijk < SourceArray.length; ijk += 2){
          SourceArray[ijk] = decodeURIComponent(SourceArray[ijk]);
-         SourceArray[ijk+1] = '';
       }
       return SourceArray.join('');
    }
