@@ -16,7 +16,7 @@ The JavaScript module is compatible with the drafts (though not completely cove
 
 ## Installing the module
 
-[![(npm package version)](https://nodei.co/npm/fghi-url.png?compact=true)](https://npmjs.org/package/fghi-url)
+[![(npm package version)](https://nodei.co/npm/fghi-url.png?downloads=true&downloadRank=true)](https://npmjs.org/package/fghi-url)
 
 * Latest packaged version: `npm install fghi-url`
 
