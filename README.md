@@ -88,7 +88,7 @@ If several supported views are recommended, the most preferred view's token is�
 
 ## Testing the module
 
-[![(build testing status)](https://travis-ci.org/Mithgol/FGHI-URL.svg?branch=master)](https://travis-ci.org/Mithgol/FGHI-URL)
+[![(build testing status)](https://img.shields.io/travis/Mithgol/FGHI-URL/master.svg?style=plastic)](https://travis-ci.org/Mithgol/FGHI-URL)
 
 It is necessary to install [Mocha](http://visionmedia.github.io/mocha/) and [JSHint](http://jshint.com/) for testing.
 
