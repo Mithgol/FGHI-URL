@@ -1,3 +1,5 @@
+[![(a histogram of downloads)](https://nodei.co/npm-dl/fghi-url.png?height=3)](https://npmjs.org/package/fghi-url)
+
 ## FGHI URL
 
 This repository contains draft standards of Uniform Resource Locators for the Fidonet Global Hypertext Interface project.
