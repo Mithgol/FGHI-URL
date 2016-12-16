@@ -92,7 +92,7 @@ If several supported views are recommended, the most preferred view's token is�
 
 [![(build testing status)](https://img.shields.io/travis/Mithgol/FGHI-URL/master.svg?style=plastic)](https://travis-ci.org/Mithgol/FGHI-URL)
 
-It is necessary to install [Mocha](http://visionmedia.github.io/mocha/) and [JSHint](http://jshint.com/) for testing.
+It is necessary to install [Mocha](http://mochajs.org/) and [JSHint](http://jshint.com/) for testing.
 
 * You may install Mocha globally (`npm install mocha -g`) or locally (`npm install mocha` in the directory of the FGHI URL module).
 
