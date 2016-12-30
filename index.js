@@ -297,7 +297,6 @@ var freqRequiredPart = function(){
 };
 
 var parseRequiredPart = function(){
-   /* jshint indent: false */
    // Now we start parsing requiredPart.
    // This is going to be very scheme-specific.
    // Our goal is to fill one (or more) of the following:
