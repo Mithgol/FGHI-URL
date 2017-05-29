@@ -26,7 +26,12 @@ Icon?
 
 # Node.js modules
 node_modules
-package-lock.json
 
 # NPM error logs
 npm-debug.log
+package-lock.json
+
+# .npmignore should ignore tests and Git stuff
+test
+.gitignore
+.git
